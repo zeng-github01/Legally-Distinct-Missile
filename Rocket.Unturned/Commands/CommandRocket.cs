@@ -68,10 +68,12 @@ namespace Rocket.Unturned.Commands
                         break;
                     case "reload":
                         if (caller!=null && !caller.HasPermission("rocket.reload")) return;
-                            // Many plugins do not support reloading properly, so this command which reloaded all plugins
-                            // at once has been disabled by popular request. Reloading individual plugins is still enabled.
-                            // https://github.com/SmartlyDressedGames/Unturned-3.x-Community/issues/1794
-                            UnturnedChat.Say(caller, U.Translate("command_rocket_reload_disabled"));
+                        // Many plugins do not support reloading properly, so this command which reloaded all plugins
+                        // at once has been disabled by popular request. Reloading individual plugins is still enabled.
+                        // https://github.com/SmartlyDressedGames/Unturned-3.x-Community/issues/1794
+                        //UnturnedChat.Say(caller, U.Translate("command_rocket_reload_disabled"));
+                        R.Reload();
+                        UnturnedChat.Say(caller, U.Translate("command_rocket_reload"));
                         break;
                 }
             }

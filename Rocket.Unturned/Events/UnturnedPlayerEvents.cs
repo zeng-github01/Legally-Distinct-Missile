@@ -15,6 +15,7 @@ namespace Rocket.Unturned.Events
         protected override void Load()
         {
             Player.Player.life.onStaminaUpdated += onUpdateStamina;
+            Player.Player.life.onOxygenUpdated += onUpdateOxygen;
             Player.Player.inventory.onInventoryAdded += onInventoryAdded;
             Player.Player.inventory.onInventoryRemoved += onInventoryRemoved;
             Player.Player.inventory.onInventoryResized += onInventoryResized;
@@ -58,43 +59,50 @@ namespace Rocket.Unturned.Events
         internal static void InternalOnShirtChanged(PlayerClothing clothing)
         {
             UnturnedPlayer rp = UnturnedPlayer.FromPlayer(clothing.player);
-            OnPlayerWear.TryInvoke(rp, Wearables.Shirt, clothing.shirt, clothing.shirtQuality);
+            OnPlayerWearV2.TryInvoke(rp, Wearables.Shirt, clothing.shirt, clothing.shirtQuality, clothing.shirtState);
+            OnPlayerWear.TryInvoke(rp,Wearables.Shirt,clothing.shirt,clothing.shirtQuality);
         }
 
         internal static void InternalOnPantsChanged(PlayerClothing clothing)
         {
             UnturnedPlayer rp = UnturnedPlayer.FromPlayer(clothing.player);
+            OnPlayerWearV2.TryInvoke(rp, Wearables.Pants, clothing.pants, clothing.pantsQuality, clothing.pantsState);
             OnPlayerWear.TryInvoke(rp, Wearables.Pants, clothing.pants, clothing.pantsQuality);
         }
 
         internal static void InternalOnHatChanged(PlayerClothing clothing)
         {
             UnturnedPlayer rp = UnturnedPlayer.FromPlayer(clothing.player);
+            OnPlayerWearV2.TryInvoke(rp, Wearables.Hat, clothing.hat, clothing.hatQuality, clothing.hatState);
             OnPlayerWear.TryInvoke(rp, Wearables.Hat, clothing.hat, clothing.hatQuality);
         }
 
         internal static void InternalOnBackpackChanged(PlayerClothing clothing)
         {
             UnturnedPlayer rp = UnturnedPlayer.FromPlayer(clothing.player);
+            OnPlayerWearV2.TryInvoke(rp, Wearables.Backpack, clothing.backpack, clothing.backpackQuality, clothing.backpackState);
             OnPlayerWear.TryInvoke(rp, Wearables.Backpack, clothing.backpack, clothing.backpackQuality);
         }
 
         internal static void InternalOnVestChanged(PlayerClothing clothing)
         {
             UnturnedPlayer rp = UnturnedPlayer.FromPlayer(clothing.player);
+            OnPlayerWearV2.TryInvoke(rp, Wearables.Vest, clothing.vest, clothing.vestQuality, clothing.vestState);
             OnPlayerWear.TryInvoke(rp, Wearables.Vest, clothing.vest, clothing.vestQuality);
         }
 
         internal static void InternalOnMaskChanged(PlayerClothing clothing)
         {
             UnturnedPlayer rp = UnturnedPlayer.FromPlayer(clothing.player);
+            OnPlayerWearV2.TryInvoke(rp, Wearables.Mask, clothing.mask, clothing.maskQuality, clothing.maskState);
             OnPlayerWear.TryInvoke(rp, Wearables.Mask, clothing.mask, clothing.maskQuality);
         }
 
         internal static void InternalOnGlassesChanged(PlayerClothing clothing)
         {
             UnturnedPlayer rp = UnturnedPlayer.FromPlayer(clothing.player);
-            OnPlayerWear.TryInvoke(rp, Wearables.Mask, clothing.glasses, clothing.glassesQuality);
+            OnPlayerWearV2.TryInvoke(rp, Wearables.Glasses, clothing.glasses, clothing.glassesQuality, clothing.glassesState);
+            OnPlayerWear.TryInvoke(rp, Wearables.Glasses, clothing.glasses, clothing.glassesQuality);
         }
 
         internal static void InternalOnGestureChanged(PlayerAnimator animator, EPlayerGesture vanillaGesture)
@@ -330,6 +338,16 @@ namespace Rocket.Unturned.Events
         public static event PlayerUpdateStamina OnPlayerUpdateStamina;
         public event PlayerUpdateStamina OnUpdateStamina;
 
+        public delegate void PlayerUpdateOxygen(UnturnedPlayer player, byte oxygen);
+        public static event PlayerUpdateOxygen OnPlayerUpdateOxygen;
+        public event PlayerUpdateOxygen OnUpdateOxygen;
+
+        private void onUpdateOxygen(byte oxygen)
+        {
+            OnPlayerUpdateOxygen.TryInvoke(Player, oxygen);
+            OnUpdateOxygen.TryInvoke(Player, oxygen);
+        }
+
         private void onUpdateStamina(byte stamina)
         {
             OnPlayerUpdateStamina.TryInvoke(Player, stamina);
@@ -400,7 +418,10 @@ namespace Rocket.Unturned.Events
         }
 
         public enum Wearables { Hat = 0, Mask = 1, Vest = 2, Pants = 3, Shirt = 4, Glasses = 5, Backpack = 6};
-        public delegate void PlayerWear(UnturnedPlayer player, Wearables wear, ushort id, byte? quality);
+        public delegate void PlayerWearv2(UnturnedPlayer player, Wearables wear, ushort id, byte quality, byte[] states);
+        public static event PlayerWearv2 OnPlayerWearV2;
+
+        public delegate void PlayerWear(UnturnedPlayer player, Wearables wear, ushort id, byte quality);
         public static event PlayerWear OnPlayerWear;
 
     }
