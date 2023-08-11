@@ -117,5 +117,10 @@ namespace Rocket.Core.Permissions
         {
             return helper.DeleteGroup(groupId);
         }
+
+        public List<RocketPermissionsGroup> GetAllGroups()
+        {
+            return helper.GetAllGroups();
+        }
     }
 }

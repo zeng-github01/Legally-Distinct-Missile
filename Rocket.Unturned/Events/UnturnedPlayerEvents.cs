@@ -418,8 +418,8 @@ namespace Rocket.Unturned.Events
         }
 
         public enum Wearables { Hat = 0, Mask = 1, Vest = 2, Pants = 3, Shirt = 4, Glasses = 5, Backpack = 6};
-        public delegate void PlayerWearv2(UnturnedPlayer player, Wearables wear, ushort id, byte quality, byte[] states);
-        public static event PlayerWearv2 OnPlayerWearV2;
+        public delegate void PlayerWearV2(UnturnedPlayer player, Wearables wear, ushort id, byte quality, byte[] states);
+        public static event PlayerWearV2 OnPlayerWearV2;
 
         public delegate void PlayerWear(UnturnedPlayer player, Wearables wear, ushort id, byte quality);
         public static event PlayerWear OnPlayerWear;

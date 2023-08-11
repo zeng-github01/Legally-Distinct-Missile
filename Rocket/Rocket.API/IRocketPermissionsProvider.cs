@@ -42,6 +42,7 @@ namespace Rocket.API
         bool HasPermission(IRocketPlayer player, List<string> requestedPermissions);
 
         List<RocketPermissionsGroup> GetGroups(IRocketPlayer player, bool includeParentGroups);
+        List<RocketPermissionsGroup> GetAllGroups();
         List<Permission> GetPermissions(IRocketPlayer player);
         List<Permission> GetPermissions(IRocketPlayer player, List<string> requestedPermissions);
 
