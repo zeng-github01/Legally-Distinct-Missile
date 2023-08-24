@@ -68,6 +68,7 @@
     </Reference>
     <Reference Include="com.rlabrecque.steamworks.net">
       <HintPath>lib\com.rlabrecque.steamworks.net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Rocket.API">
       <SpecificVersion>False</SpecificVersion>
@@ -104,11 +105,15 @@
       <HintPath>lib\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEx">
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\U3DS\Unturned_Data\Managed\UnityEx.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CommandMore.cs" />
     <Compile Include="Commands\UnturnedCommands.cs" />
     <Compile Include="Commands\UnturnedCommandExtensions.cs" />
+    <Compile Include="Extensions\PlayerLifeExtension.cs" />
     <Compile Include="Player\UnturnedPlayerMovement.cs" />
     <Compile Include="Skills\UnturnedSkill.cs" />
     <Compile Include="UnturnedConsoleWriter.cs" />

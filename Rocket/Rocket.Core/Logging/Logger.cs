@@ -124,6 +124,14 @@ namespace Rocket.Core.Logging
             ProcessInternalLog(ELogType.Warning, message);
         }
 
+        public static void LogDebug(string message)
+        {
+            if(R.Settings.Instance.Debug)
+            {
+                LogWarning("[Debug]:" +message);
+            }
+        }
+
         public static void LogError(string message)
         {
             if (message == null) return;

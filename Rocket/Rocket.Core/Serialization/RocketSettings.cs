@@ -81,6 +81,9 @@ namespace Rocket.Core.Serialization
 
     public sealed class RocketSettings : IDefaultable
     {
+        [XmlElement("DebugMode")]
+        public bool Debug;
+
         [XmlElement("RCON")]
         public RemoteConsole RCON = new RemoteConsole();
 
@@ -101,6 +104,7 @@ namespace Rocket.Core.Serialization
         
         public void LoadDefaults()
         {
+            Debug = false;
             RCON = new RemoteConsole();
             AutomaticShutdown = new AutomaticShutdown();
             WebConfigurations = new WebConfigurations();

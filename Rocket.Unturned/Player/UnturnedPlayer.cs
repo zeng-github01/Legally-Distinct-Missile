@@ -416,10 +416,6 @@ namespace Rocket.Unturned.Player
             {
                 return player.life.stamina;
             }
-            set
-            {
-                player.life.serverModifyStamina(value);
-            }
         }
 
         public byte Oxygen
@@ -427,12 +423,6 @@ namespace Rocket.Unturned.Player
             get
             {
                return player.life.oxygen;
-            }
-
-            set
-            {
-                player.life.askSuffocate(100);
-                player.life.askBreath(value);
             }
         }
 

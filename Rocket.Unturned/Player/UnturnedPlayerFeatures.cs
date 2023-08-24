@@ -1,5 +1,7 @@
 ﻿using Rocket.API.Extensions;
+using Rocket.Core.Logging;
 using Rocket.Unturned.Events;
+using Rocket.Unturned.Extensions;
 using SDG.Unturned;
 using System;
 using UnityEngine;
@@ -124,6 +126,8 @@ namespace Rocket.Unturned.Player
                 Player.Infection = 0;
                 Player.Hunger = 0;
                 Player.Thirst = 0;
+                Player.Player.life.askRest(100);
+                Player.Player.life.askBreath(100);
                 Player.Bleeding = false;
                 Player.Broken = false;
             }
@@ -157,13 +161,14 @@ namespace Rocket.Unturned.Player
         private void e_OnPlayerUpdateStamina(UnturnedPlayer player, byte stamina)
         {
             if (stamina < 95)
-                player.Stamina = 100;
+                Player.Player.life.serverModifyStamina(100);
         }
 
         private void e_OnPlayerUpdateOxygen(UnturnedPlayer player, byte oxygen)
         {
-            if(oxygen < 95)
-                player.Oxygen = 100;
+            if (oxygen < 95)
+                Player.Player.life.serverModifyOxygen(100);
+
         }
     }
 }
