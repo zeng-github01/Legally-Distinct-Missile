@@ -126,8 +126,6 @@ namespace Rocket.Unturned.Player
                 Player.Infection = 0;
                 Player.Hunger = 0;
                 Player.Thirst = 0;
-                Player.Player.life.askRest(100);
-                Player.Player.life.askBreath(100);
                 Player.Bleeding = false;
                 Player.Broken = false;
             }
