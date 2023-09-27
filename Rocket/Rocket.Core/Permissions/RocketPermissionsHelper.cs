@@ -205,5 +205,10 @@ namespace Rocket.Core.Permissions
             return applyingPermissions.Distinct().ToList();
         }
 
+        public List<RocketPermissionsGroup> GetAllGroups()
+        {
+            return permissions.Instance.Groups;
+        }
+
     }
 }

@@ -14,31 +14,6 @@ namespace Rocket.Unturned.Extensions
 {
     public static class PlayerLifeExtension
     {
-        private static readonly ClientInstanceMethod<sbyte> SendModifyOxygen = ClientInstanceMethod<sbyte>.Get(typeof(PlayerLife), "simulatedModifyOxygen");
-
-        //private static void serverModifyOxygen(this PlayerLife life ,float delta)
-        //{
-        //   try
-        //    {
-        //        sbyte num = MathfEx.RoundAndClampToSByte(delta);
-        //        if (num != 0)
-        //        {
-        //            life.simulatedModifyOxygen(num);
-        //            if (!life.channel.isOwner)
-        //            {
-        //                SendModifyOxygen.Invoke(life.GetNetId(), ENetReliability.Reliable, life.channel.GetOwnerTransportConnection(), num);
-        //            }
-        //        }
-        //    }
-        //    catch(Exception e)
-        //    {
-        //       if(SendModifyOxygen == null)
-        //        {
-        //            Logger.LogWarning("execute client mothod SendModifyOxyegn is null");
-        //        }
-        //        Logger.LogException(e,"ServerModifyOxygen occur error");
-        //    }
-        //}
 
         public static void serverModifyOxygen(this PlayerLife life, byte newOxygen)
         {
