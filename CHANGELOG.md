@@ -2,6 +2,22 @@
 
 All notable changes should be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## Unreleased
+
+### Fixed
+- Implement automatic shutdown. Thanks to @RestoreMonarchy in PR #83!
+- Handle assemblies with null version. Thanks to @Senior-S and @DanielWillett in issue #84!
+
+## 4.9.3.18 - 2024-12-13
+
+### Changed
+- Increased automatic message wrapping length to use newer vanilla max message length. Thanks @MidnightTokyo and @Trojaner in PR #79.
+
+## 4.9.3.17 - 2024-07-03
+
+### Fixed
+- V command expecting `VehicleAsset` throwing an exception when encountering `VehicleRedirectorAsset`. Thanks @ItsRodrigoAl in issue #75.
+
 ## 4.9.3.16 - 2023-10-13
 
 ### Changed
