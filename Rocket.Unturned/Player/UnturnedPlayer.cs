@@ -416,6 +416,10 @@ namespace Rocket.Unturned.Player
             {
                 return player.life.stamina;
             }
+            set
+            {
+                player.life.serverModifyStamina(value);
+            }
         }
 
         public byte Oxygen

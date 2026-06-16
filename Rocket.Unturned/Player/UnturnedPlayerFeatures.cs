@@ -52,7 +52,6 @@ namespace Rocket.Unturned.Player
                     Player.Events.OnUpdateFood += e_OnPlayerUpdateFood;
                     Player.Events.OnUpdateVirus += e_OnPlayerUpdateVirus;
                     Player.Events.OnUpdateStamina += e_OnPlayerUpdateStamina;
-                    Player.Events.OnUpdateOxygen += e_OnPlayerUpdateOxygen;
                 }
                 else
                 {
@@ -61,7 +60,6 @@ namespace Rocket.Unturned.Player
                     Player.Events.OnUpdateFood -= e_OnPlayerUpdateFood;
                     Player.Events.OnUpdateVirus -= e_OnPlayerUpdateVirus;
                     Player.Events.OnUpdateStamina -= e_OnPlayerUpdateStamina;
-                    Player.Events.OnUpdateOxygen -= e_OnPlayerUpdateOxygen;
                 }
                 godMode = value;
             }
@@ -121,7 +119,6 @@ namespace Rocket.Unturned.Player
                 Player.Events.OnUpdateFood += e_OnPlayerUpdateFood;
                 Player.Events.OnUpdateVirus += e_OnPlayerUpdateVirus;
                 Player.Events.OnUpdateStamina += e_OnPlayerUpdateStamina;
-                Player.Events.OnUpdateOxygen += e_OnPlayerUpdateOxygen;
                 Player.Heal(100);
                 Player.Infection = 0;
                 Player.Hunger = 0;
@@ -159,14 +156,7 @@ namespace Rocket.Unturned.Player
         private void e_OnPlayerUpdateStamina(UnturnedPlayer player, byte stamina)
         {
             if (stamina < 95)
-                Player.Player.life.serverModifyStamina(100);
-        }
-
-        private void e_OnPlayerUpdateOxygen(UnturnedPlayer player, byte oxygen)
-        {
-            if (oxygen < 95)
-                Player.Player.life.serverModifyOxygen(100);
-
+                player.Stamina = 100;
         }
     }
 }

@@ -70,6 +70,7 @@
       <HintPath>lib\com.rlabrecque.steamworks.net.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="netstandard" />
     <Reference Include="Rocket.API">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Rocket.API.dll</HintPath>
