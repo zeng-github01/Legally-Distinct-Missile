@@ -47,7 +47,7 @@ namespace Rocket.Unturned.Commands
         public void Execute(IRocketPlayer caller, string[] command)
         {
             UnturnedPlayer player = (UnturnedPlayer)caller;
-            if (command.Length != 1)
+            if (command.Length == 0)
             {
                 UnturnedChat.Say(caller, U.Translate("command_generic_invalid_parameter"));
                 throw new WrongUsageOfCommandException(caller, this);
@@ -57,7 +57,7 @@ namespace Rocket.Unturned.Commands
 
             if (!id.HasValue)
             {
-                string itemString = command.GetStringParameter(0);
+                string itemString = string.Join(" ", command);
 
                 if (itemString == null)
                 {

@@ -48,7 +48,7 @@ namespace Rocket.Unturned.Commands
         public void Execute(IRocketPlayer caller, string[] command)
         {
             UnturnedPlayer player = (UnturnedPlayer)caller;
-            if (command.Length == 0 || command.Length > 2)
+            if (command.Length == 0)
             {
                 UnturnedChat.Say(player, U.Translate("command_generic_invalid_parameter"));
                 throw new WrongUsageOfCommandException(caller, this);
@@ -57,7 +57,7 @@ namespace Rocket.Unturned.Commands
             ushort id = 0;
             byte amount = 1;
 
-            string itemString = command[0].ToString();
+            string itemString = string.Join(" ", command.Take(Math.Max(1, command.Length - 1)).ToArray());
 
             if (!ushort.TryParse(itemString, out id))
             {
@@ -73,7 +73,7 @@ namespace Rocket.Unturned.Commands
 
             Asset a = SDG.Unturned.Assets.find(EAssetType.ITEM,id);
 
-            if (command.Length == 2 && !byte.TryParse(command[1].ToString(), out amount) || a == null)
+            if (command.Length > 1 && !byte.TryParse(command.Last(), out amount) || a == null)
             {
                 UnturnedChat.Say(player, U.Translate("command_generic_invalid_parameter"));
                 throw new WrongUsageOfCommandException(caller, this);

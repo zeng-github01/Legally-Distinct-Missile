@@ -48,7 +48,7 @@ namespace Rocket.Unturned.Commands
         public void Execute(IRocketPlayer caller, string[] command)
         {
             UnturnedPlayer player = (UnturnedPlayer)caller;
-            if (command.Length != 1 && command.Length != 3)
+            if (command.Length == 0)
             {
                 UnturnedChat.Say(player, U.Translate("command_generic_invalid_parameter"));
                 throw new WrongUsageOfCommandException(caller, this);
@@ -78,7 +78,7 @@ namespace Rocket.Unturned.Commands
             }
             else
             {
-                UnturnedPlayer otherplayer = UnturnedPlayer.FromName(command[0]);
+                UnturnedPlayer otherplayer = UnturnedPlayer.FromName(string.Join(" ", command));
                 if (otherplayer != null && otherplayer != player)
                 {
                     player.Teleport(otherplayer);
@@ -87,7 +87,7 @@ namespace Rocket.Unturned.Commands
                 }
                 else
                 {
-                    Node item = LevelNodes.nodes.Where(n => n.type == ENodeType.LOCATION && ((LocationNode)n).name.ToLower().Contains(command[0].ToLower())).FirstOrDefault();
+                    Node item = LevelNodes.nodes.Where(n => n.type == ENodeType.LOCATION && ((LocationNode)n).name.ToLower().Contains(string.Join(" ", command).ToLower())).FirstOrDefault();
                     if (item != null)
                     {
                         Vector3 c = item.point + new Vector3(0f, 0.5f, 0f);
