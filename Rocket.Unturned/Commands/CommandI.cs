@@ -56,8 +56,22 @@ namespace Rocket.Unturned.Commands
 
             ushort id = 0;
             byte amount = 1;
+            string itemString = string.Empty;
 
-            string itemString = string.Join(" ", command.Take(Math.Max(1, command.Length - 1)).ToArray());
+            if (command.Length > 1)
+            {
+                if (byte.TryParse(command.Last(), out byte parsed))
+                {
+                    amount = parsed;
+                    itemString = string.Join(" ", command.Take(command.Length - 1));
+                }
+            }
+
+            if (string.IsNullOrEmpty(itemString))
+            {
+                itemString = string.Join(" ", command);
+            }
+
 
             if (!ushort.TryParse(itemString, out id))
             {
@@ -71,9 +85,9 @@ namespace Rocket.Unturned.Commands
                 }
             }
 
-            Asset a = SDG.Unturned.Assets.find(EAssetType.ITEM,id);
+            Asset a = SDG.Unturned.Assets.find(EAssetType.ITEM, id);
 
-            if (command.Length > 1 && !byte.TryParse(command.Last(), out amount) || a == null)
+            if (a == null)
             {
                 UnturnedChat.Say(player, U.Translate("command_generic_invalid_parameter"));
                 throw new WrongUsageOfCommandException(caller, this);
